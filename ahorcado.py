@@ -26,25 +26,19 @@ from tkinter import font as tkfont
 # ---------------------------
 PALABRAS = {
     "Animales": [
-        ("PERRO", "Sustantivo"),
-        ("ELEFANTE", "Sustantivo"),
-        ("GATO", "Sustantivo"),
-        ("JIRAFA", "Sustantivo"),
-        ("TIBURON", "Sustantivo"),
+        ("PERRO", "Sustantivo / Animal doméstico"),
+        ("ELEFANTE", "Sustantivo / Mamífero grande con trompa"),
+        ("GATO", "Sustantivo / Animal doméstico, cazador de ratones"),
     ],
     "Profesiones": [
-        ("MEDICO", "Sustantivo"),
-        ("INGENIERO", "Sustantivo"),
-        ("MAESTRO", "Sustantivo"),
-        ("ARQUITECTO", "Sustantivo"),
-        ("ENFERMERA", "Sustantivo"),
+        ("MEDICO", "Sustantivo / Profesional de la salud"),
+        ("INGENIERO", "Sustantivo / Profesional que diseña soluciones"),
+        ("MAESTRO", "Sustantivo / Profesional de la educación"),
     ],
     "Frutas": [
-        ("MANZANA", "Sustantivo"),
-        ("BANANO", "Sustantivo"),
-        ("NARANJA", "Sustantivo"),
-        ("FRESA", "Sustantivo"),
-        ("MANGO", "Sustantivo"),
+        ("MANZANA", "Sustantivo / Fruta común, puede ser roja o verde"),
+        ("BANANO", "Sustantivo / Fruta amarilla y alargada"),
+        ("NARANJA", "Sustantivo / Fruta cítrica y jugosa"),
     ],
 }
 
@@ -90,7 +84,7 @@ categoria_om.pack(side=tk.LEFT)
 
 # Dificultad: Fácil -> 8 intentos, Normal -> 6 intentos
 tk.Label(frame_top, text="   Dificultad:", font=fuente_info).pack(side=tk.LEFT, padx=(12,2))
-dificultad_om = tk.OptionMenu(frame_top, dificultad_var, "Fácil", "Normal", "Difícil")
+dificultad_om = tk.OptionMenu(frame_top, dificultad_var, "Fácil", "Normal")
 dificultad_om.config(font=fuente_info)
 dificultad_om.pack(side=tk.LEFT)
 
@@ -146,13 +140,11 @@ def configurar_partida():
     palabra_secreta, pista_actual = random.choice(lista)
 
     # Dificultad -> intentos máximos
-    # Ajuste de intentos según la dificultad seleccionada
+    # Ajuste de intentos según la dificultad seleccionada (Fácil o Normal)
     if dificultad_var.get() == "Fácil":
         intentos_maximos = 8
-    elif dificultad_var.get() == "Normal":
+    else:
         intentos_maximos = 6
-    else:  # "Difícil"
-        intentos_maximos = 4
 
     # Reinicio de estado de la partida
     intentos_restantes = intentos_maximos
